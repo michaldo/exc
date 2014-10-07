@@ -2,7 +2,7 @@ app.controller("MainController", ['$scope','$http', function($scope,$http){
 	
 	var x;
 	
-	$http.get('webservers', function(data) {
+	$http.get('webservers').success(function(data) {
 	       $scope.webservers = data;
 	       x = data;
 	       alert(data);
