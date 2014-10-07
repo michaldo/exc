@@ -1,7 +1,6 @@
 package exc;
 
-import java.util.HashMap;
-
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -13,5 +12,15 @@ public class WebServers {
 	public String[] getWebservers() {
 		return new String[] {"Tomcat", "Jetty", "iPlanet"};
 	}
+	
+	@RequestMapping("/{webserver}")
+	public String getWebserverDetail(@PathVariable String webserver) {
+		switch (webserver) {
+			case "Tomcat": return "Apache";
+			case "Jetty" : return "Eclipse";
+			default : throw new IllegalArgumentException();
+		}
+	}
+
 	
 }
