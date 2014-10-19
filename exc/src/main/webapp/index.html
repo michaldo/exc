@@ -1,38 +1,43 @@
-
 <!DOCTYPE html>
 <html>
 <head>
 <title>Learning AngularJS</title>
-<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.0.7/angular.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.26/angular.min.js"></script>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+<script src="https://raw.githubusercontent.com/angular-ui/bootstrap/gh-pages/ui-bootstrap-tpls-0.11.2.min.js"></script>
 <script src="app.js"></script>
-
 <script src="maincontroller.js"></script>
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
 </head>
 <body ng-app='MyTutorialApp' ng-controller='MainController'>
-	<div class="alert alert-warning alert-dismissible" role="alert" ng-show="error">
-  <button type="button" class="close" data-dismiss="alert"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
-  <strong>Warning!</strong> {{errorMessage}}
-</div>
+	<div>
+		<alert ng-repeat="alert in alerts" type="{{alert.type}}" close="closeAlert($index)">{{alert.msg}}</alert>
+	</div>
 	<div class="row">
-		<div class="col-md-6">Webservers</div>
+		<div class="col-md-2">Webservers</div>
+		<div class="col-md-2">Databases</div>
 	</div>
 	<div class="row">
 		<div class="col-md-2">
 			<ul class="list-group">
 				<li class="list-group-item" ng-repeat='webserver in webservers'>{{webserver}}
-					<button type="button" class="btn btn-primary btn-xs" ng-click='showDetails(webserver)'>show</button>
+					<button type="button" class="btn btn-primary btn-xs" ng-click='showWebserver(webserver)'>show</button>
 				</li>
 			</ul>
 		</div>
+    <div class="col-md-2">
+      <ul class="list-group">
+        <li class="list-group-item " ng-repeat='database in databases'>{{database}}
+          <button type="button" class="btn btn-primary btn-xs" ng-click='showDatabase(database)'>show</button>
+        </li>
+      </ul>
+    </div>
+		
+	</div>
+	
+	<div class="row">
+		<div class="col-md-12">{{details}}</div>
 	</div>
 </body>
-<script>
-	$(document).ready(function() {
-		$(".alert").alert();
-		console.log('done');
-	});
-</script>
 </html>
