@@ -9,15 +9,15 @@ import org.springframework.stereotype.Component;
 public class Setup {
 
    @Autowired
-   WebserverRepo x;
+   WebserverRepo webserverRepo;
 
    @PostConstruct
    void setup() {
-      x.save(new Webserver("Tomcat", "For details go to http://tomcat.apache.org/"));
-      x.save(new Webserver("Jetty", "For details go to http://www.eclipse.org/jetty/"));
+      webserverRepo.save(new Webserver("Tomcat", "For details go to http://tomcat.apache.org/"));
+      webserverRepo.save(new Webserver("Jetty", "For details go to http://www.eclipse.org/jetty/"));
       // to cause error Resin is added twice
-      x.save(new Webserver("Resin", "For details go to http://caucho.com/"));
-      x.save(new Webserver("Resin", "For details go to http://caucho.com/"));
+      webserverRepo.save(new Webserver("Resin", "For details go to http://caucho.com/"));
+      webserverRepo.save(new Webserver("Resin", "For details go to http://caucho.com/"));
    }
 
 }

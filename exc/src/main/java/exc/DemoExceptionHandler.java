@@ -7,6 +7,12 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.ResponseStatus;
 
+/**
+ * The Class DemoExceptionHandler
+ * IMPORTANT: I omitted logging exception to server log for simplicity,  but in real life it should be logged
+ * Otherwise error context is lost. 
+ * 
+ */
 @ControllerAdvice
 public class DemoExceptionHandler {
 
@@ -20,7 +26,6 @@ public class DemoExceptionHandler {
    @ResponseStatus(HttpStatus.FORBIDDEN)
    @ResponseBody
    public String handleException(Exception ex) {
-      ex.printStackTrace();
       return "General error message: something went unexpected";
    }
    
@@ -35,8 +40,7 @@ public class DemoExceptionHandler {
    @ResponseStatus(HttpStatus.FORBIDDEN)
    @ResponseBody
    public String handleException(DataAccessException ex) {
-      ex.printStackTrace();
-      return "One level more deep than general handling (shows error message): " + ex.getMessage();
+      return "One level more deep than general handling: " + ex.getMessage();
    }
    
    /**
@@ -49,7 +53,6 @@ public class DemoExceptionHandler {
    @ResponseStatus(HttpStatus.FORBIDDEN)
    @ResponseBody
    public String handleException(WebserverNotFoundException ex) {
-      ex.printStackTrace();
       return "Quite detailed error handling: Not found: " + ex.getMessage();
    }
 
